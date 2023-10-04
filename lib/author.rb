@@ -5,4 +5,9 @@ class Author
     @items = []
     @id = rand(1..1000)
   end
+
+  def add_item(item)
+    @items << item
+    item.author = self
+  end
 end
