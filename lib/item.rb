@@ -8,4 +8,17 @@ class Item
     @archived = false
     @id = rand(1..1000)
   end
+
+  def can_be_archived?
+    current_date = Time.now.year
+    current_date - publish_date > 10
+  end
+
+  def move_to_archive
+    if can_be_archived? = true
+      puts "#{@title} has been archived."
+    else
+      puts "#{@title} cannot be archived yet."
+    end
+  end
 end
