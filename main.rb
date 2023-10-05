@@ -3,6 +3,16 @@ require_relative 'app'
 class Main
   def initialize
     @app = App.new
+    @menu = {
+      1 => 'list_of_books',
+      2 => 'list_of_music',
+      3 => 'list_of_genres',
+      4 => 'list_of_labels',
+      5 => 'list_of_authors',
+      6 => 'list_of_sources',
+      7 => 'add_book',
+      8 => 'add_music'
+    }
   end
 
   def display_options
@@ -20,27 +30,11 @@ class Main
 
   def handle_options(option)
     case option
-    when 1
-      @app.list_of_books
-    when 2
-      @app.list_of_music
-    when 3
-      @app.list_of_genres
-    when 4
-      @app.list_of_labels
-    when 5
-      @app.list_of_authors
-    when 6
-      @app.list_of_sources
-    when 7
-      @app.add_book
-    when 8
-      @app.add_music
-    else
-      puts 'Invalid option'
+    when 1..8
+      @app.send(@menu[option])
     end
   end
-  
+
   def run
     display_options
 

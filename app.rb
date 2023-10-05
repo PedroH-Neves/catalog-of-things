@@ -11,7 +11,7 @@ class App
   def list_of_books
     puts 'Hi I am a list of books'
   end
-  
+
   def list_of_music
     puts 'Hi I am a list of music'
   end
