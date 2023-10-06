@@ -1,4 +1,6 @@
 class Item
+  attr_accessor :genre, :author, :source, :label
+
   def initialize(genre, author, source, label, publish_date)
     @genre = genre
     @author = author
@@ -11,7 +13,7 @@ class Item
 
   def can_be_archived?
     current_date = Time.now.year
-    current_date - publish_date > 10
+    current_date - @publish_date > 10
   end
 
   def move_to_archive

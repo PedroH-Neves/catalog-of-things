@@ -7,9 +7,6 @@ class Book < Item
 
   def can_be_archived?
     parent = super()
-    if parent || @cover_state == 'bad'
-      true
-    else
-    false
+    parent || @cover_state == 'bad' ? true : false
   end
 end
