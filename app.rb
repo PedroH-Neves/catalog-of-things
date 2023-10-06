@@ -9,7 +9,9 @@ class App
   end
 
   def list_of_books
-    puts 'Hi I am a list of books'
+    @books.each do |book|
+      puts("Book: #{book.title} by #{book.author}")
+    end
   end
 
   def list_of_music
