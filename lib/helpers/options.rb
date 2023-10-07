@@ -22,4 +22,5 @@ module Options
       7 => 'add_book',
       8 => 'add_music'
     }
+  end
 end

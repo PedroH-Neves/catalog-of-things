@@ -1,5 +1,6 @@
 require_relative 'app'
 require './lib/helpers/options'
+require 'pry'
 
 class Main
   include Options
