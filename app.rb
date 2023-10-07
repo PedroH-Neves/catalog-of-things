@@ -1,5 +1,7 @@
 require './lib/helpers/book_form'
+require './lib/helpers/music_form'
 require './lib/book'
+require './lib/music_album'
 require 'pry'
 
 class App
@@ -29,12 +31,34 @@ class App
       }
 
     @books << Book.new(book_attributes)
+    @genres << Genre.new(book_attributes[:genre].name)
+    @labels << Label.new(book_attributes[:label].title, book_attributes[:label].color)
+    @authors << Author.new(book_attributes[:author].first_name, book_attributes[:author].last_name)
+    @sources << Source.new(book_attributes[:source].name)
 
     puts 'Book created successfully'
   end
 
   def add_music
-    puts 'Hi I am a add music'
+    args = MusicForm.user_input
+
+    music_attributes =
+      {
+        genre: args[:genre],
+        author: args[:author],
+        source: args[:source],
+        label: args[:label],
+        publish_date: args[:published_date],
+        on_spotify: args[:on_spotify]
+      }
+
+    @music_albums << MusicAlbum.new(music_attributes)
+    @genres << Genre.new(music_attributes[:genre].name)
+    @labels << Label.new(music_attributes[:label].title, music_attributes[:label].color)
+    @authors << Author.new(music_attributes[:author].first_name, music_attributes[:author].last_name)
+    @sources << Source.new(music_attributes[:source].name)
+
+    puts 'Book created successfully'
   end
 
   def list_of_books
@@ -46,23 +70,43 @@ class App
   end
 
   def list_of_music
-    @music_albums.empty? ? puts { 'No musics availiable' } : print_musics
+    if @music_albums.empty?
+      puts 'No musics available'
+    else
+      print_musics
+    end
   end
 
   def list_of_labels
-    @labels.empty? ? puts { 'No labels available' } : print_labels
+    if @labels.empty?
+      puts 'No labels available'
+    else
+      print_labels
+    end
   end
 
   def list_of_genres
-    @genres.empty? ? puts { 'No genres available' } : print_genres
+    if @genres.empty?
+      puts 'No genres available'
+    else
+      print_genres
+    end
   end
 
   def list_of_authors
-    @authors.empty? ? puts { 'No authors available' } : print_authors
+    if @authors.empty?
+      puts 'No authors available'
+    else
+      print_authors
+    end
   end
 
   def list_of_sources
-    @sources.empty? ? puts { 'No sources availiable' } : print_sources
+    if @sources.empty?
+      puts 'No sources availiable'
+    else
+      print_sources
+    end
   end
 
   private
@@ -80,12 +124,20 @@ class App
 
   def print_musics
     @music_albums.each do |music|
-      puts("Music: #{music.title} by #{music.author}")
+      puts "Music: #{music.label.title} by #{music.author.first_name} #{music.author.last_name}\n"
+      puts "Genre: #{music.genre.name}\n "
+      puts "Published Date: #{music.published_date}\n"
+      puts "On Spotify: #{music.on_spotify}\n"
+      puts "====================================================================================\n"
     end
   end
 
   def print_labels
     @labels.each { |label| puts("Label: #{label.title}, #{label.color}") }
+  end
+
+  def print_genres
+    @genres.each { |genre| puts("Genre: #{genre.name}") }
   end
 
   def print_authors

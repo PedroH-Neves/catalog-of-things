@@ -11,7 +11,6 @@ class MusicForm
       source: source,
       label: label,
       published_date: published_date,
-      publisher: publisher
       on_spotify: on_spotify
     }
   end
@@ -47,9 +46,9 @@ class MusicForm
     print 'Publish Date: '
     gets.chomp
   end
-  
+
   def self.on_spotify
-    print 'Is on spotify ?(y/n): '
+    print 'Is on spotify ?(yes/no): '
     gets.chomp
   end
 end
