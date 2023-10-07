@@ -17,15 +17,18 @@ class App
   def add_book
     args = BookForm.user_input
 
-    @books << Book.new(
-      args[:genre],
-      args[:author],
-      args[:source],
-      args[:label],
-      args[:published_date],
-      args[:publisher],
-      args[:cover_state]
-    )
+    book_attributes =
+      {
+        genre: args[:genre],
+        author: args[:author],
+        source: args[:source],
+        label: args[:label],
+        publish_date: args[:published_date],
+        publisher: args[:publisher],
+        cover_state: args[:cover_state]
+      }
+
+    @books << Book.new(book_attributes)
 
     puts 'Book created successfully'
   end

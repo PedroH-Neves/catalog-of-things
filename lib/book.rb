@@ -1,14 +1,15 @@
+require './lib/helpers/book_form'
 require_relative 'item'
 require 'pry'
 
 class Book < Item
   attr_accessor :publisher, :cover_state
 
-  def initialize(genre, author, source, label, publish_date, publisher, cover_state)
-    super(genre, author, source, label, publish_date)
+  def initialize(attributes = {})
+    super(attributes[:genre], attributes[:author], attributes[:source], attributes[:label], attributes[:publish_date])
 
-    @publisher = publisher
-    @cover_state = cover_state
+    @publisher = attributes[:publisher]
+    @cover_state = attributes[:cover_state]
   end
 
   def can_be_archived?
