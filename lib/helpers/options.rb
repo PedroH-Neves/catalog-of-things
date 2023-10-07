@@ -12,7 +12,7 @@ module Options
     puts '9 - Exit'
   end
 
-  def menu_options =
+  def menu_options
     {
       1 => 'list_of_books',
       2 => 'list_of_music',
