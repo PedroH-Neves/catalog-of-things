@@ -1,5 +1,6 @@
 require_relative 'app'
 require './lib/helpers/options'
+require './data/manager'
 require 'pry'
 
 class Main
@@ -28,6 +29,18 @@ class Main
       puts ''
       display_options
     end
+
+    to_be_saved = {
+      books: @app.books,
+      musics: @app.musics,
+      genres: @app.genres,
+      authors: @app.authors,
+      sources: @app.sources,
+      labels: @app.labels
+    }
+
+    Manager.save_file(to_be_saved)
+
     puts 'Good bye!'
   end
 end

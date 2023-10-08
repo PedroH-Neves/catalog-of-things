@@ -5,15 +5,15 @@ require './lib/music_album'
 require 'pry'
 
 class App
-  attr_reader :books, :music_albums, :genres, :labels, :authors, :sources
+  attr_reader :books, :musics, :genres, :labels, :authors, :sources
 
   def initialize
-    @books = []
-    @music_albums = []
-    @genres = []
-    @labels = []
-    @authors = []
-    @sources = []
+    @books = Manager.load_books || []
+    @musics = Manager.load_musics || []
+    @genres = Manager.load_genres || []
+    @labels = Manager.load_labels || []
+    @authors = Manager.load_authors || []
+    @sources = Manager.load_sources || []
   end
 
   def add_book
@@ -52,7 +52,7 @@ class App
         on_spotify: args[:on_spotify]
       }
 
-    @music_albums << MusicAlbum.new(music_attributes)
+    @musics << MusicAlbum.new(music_attributes)
     @genres << Genre.new(music_attributes[:genre].name)
     @labels << Label.new(music_attributes[:label].title, music_attributes[:label].color)
     @authors << Author.new(music_attributes[:author].first_name, music_attributes[:author].last_name)
